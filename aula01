@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>atividade1</title>
+</head>
+<body>
+    <input type="text" id="texto">
+    <button onclick="adicionar()">enviar</button>
+    <script>
+        var txtvalor = document.getElementById("texto")
+        var minhalista = document.getElementById("lista")
+
+        function adicionar(){
+            valor = txtvalor.value
+            lista.innerHTML += "<br>" +valor+""
+            lista.style.width = "200px"
+            
+
+
+        }
+
+
+
+    </script>
+    <div id="lista">
+
+
+    </div>
+</body>
+</html>
