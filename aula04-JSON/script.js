@@ -47,12 +47,15 @@ function consultar(){
                 txt +=  '       <th>Id</th>';
                 txt +=  '       <th>Nome</th>';
                 txt +=  '       <th>Preço</th>';
+                txt +=  '       <th>Ecluir</th>';
+
                 txt +=  '   </tr>';
                 objJSON.produtos.forEach( prod => {
                     txt += '<tr>';
                     txt += '    <td>' + prod.id + '</td>';
                     txt += '    <td>' + prod.nome + '</td>';
                     txt += '    <td>' + prod.preco + '</td>';
+                    txt += '    <td>  <button onclick="excluir('+prod.id+')"> Excluir  </button>              <td>'
                     txt += '</tr>';
                 });
                 txt += '</table>';
@@ -96,3 +99,19 @@ function salvar(){
         req.send("name=" + nome + "&price=" +vPreco);
     }
 }
+function excluir(id){
+    var req = new XMLHttpRequest();
+        req.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                var objJSON = JSON.parse(this.responseText);
+                if(objJSON.resposta){
+                    alert(objJSON.resposta);
+                    consultar();
+                }
+            }else if(this.readyState == 4){
+                    alert (this.status + " - " + this.statusText);
+            }
+        };
+        req.open("GET", "servidor.php?excluir&idProduto=" + id, true);
+        req.send();
+    }

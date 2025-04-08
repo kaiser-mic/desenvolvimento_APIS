@@ -46,3 +46,21 @@ if( isset( $_REQUEST["inserir"] ) ){
         echo ' { "resposta" : "Erro no servidor" } ';
     }
 }
+
+if (isset ($_REQUEST["excluir"])){
+    $id = $_GET["idProduto"];
+    try {
+        $conn = mysqli_connect ( $local, $user, $senha, $banco);
+        if ($conn){
+            $sql = "DELETE FROM produto WHERE id = $id";
+            mysqli_query( $conn, $sql);
+            mysqli_close( $conn);
+            echo ' { "resposta" : "Produto excluido cmo sucesso"}';
+        }else{
+            echo ' { "resposta" : "Erro ao tentar conectar" } ';
+        }
+    } catch (\Throwable $th) {
+        echo ' { "resposta" : "Erro no servidor" } ';
+    }
+
+}
