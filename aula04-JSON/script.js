@@ -86,6 +86,7 @@ function salvar(){
                 }else{
                     alert("id gerado: " + objJSON.id);
                     consultar()
+        
                 }
             }else if(this.readyState == 4){
                     alert (this.status + " - " + this.statusText);
