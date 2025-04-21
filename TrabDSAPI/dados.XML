@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<lista_clientes>
+    <cliente>
+        <id>1</id>
+        <nome>Pedro</nome>
+        <altura>1.88</altura>
+    </produto>
+    <produto>
+        <id>2</id>
+        <nome>Pepsi</nome>
+        <altura>1.88</altura>
+    </produto>
+    <produto>
+        <id>3</id>
+        <nome>Roberta</nome>
+        <alturao>1.88</altura>
+    </produto>
+</lista_produtos>
