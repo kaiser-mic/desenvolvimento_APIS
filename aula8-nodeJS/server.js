@@ -45,3 +45,4 @@ function consultar(res){
 server.listen(port, hostname, () => {
     console.log(`servidor rodandno em: http://${hostname}:${port}`)
 })
+
