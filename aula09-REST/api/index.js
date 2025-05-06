@@ -65,9 +65,7 @@ app.put( "/product/:idprod" , (req, res, next) => {
                 return next(errors(404, "Produto nao encontrado"))
             }
             res.status(200).json( {
-                resposta : "produto editado",
-                id: dados[0]
-            })
+                resposta : "produto editado",            })
         }) 
         .catch(next)
 }  )
