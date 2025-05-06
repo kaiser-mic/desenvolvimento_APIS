@@ -55,7 +55,22 @@ app.post( "/product" , (req, res, next) => {
         }) 
         .catch(next)
 }  )
-
+app.put( "/product/:idprod" , (req, res, next) => {
+    const id = req.params.idprod
+    conn("produto")
+        .where("id", id)
+        .update(req.body)
+        .then(dados => {
+            if( !dados ){
+                return next(errors(404, "Produto nao encontrado"))
+            }
+            res.status(200).json( {
+                resposta : "produto editado",
+                id: dados[0]
+            })
+        }) 
+        .catch(next)
+}  )
 
 
 
