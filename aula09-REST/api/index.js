@@ -70,6 +70,20 @@ app.put( "/product/:idprod" , (req, res, next) => {
         .catch(next)
 }  )
 
+app.delete( "/product/:idprod" , (req, res, next) => {
+    const id = req.params.idprod
+    conn("produto")
+        .where("id", id)
+        .delete()
+        .then(dados => {
+            if( !dados ){
+                return next(errors(404, "Produto nao encontrado"))
+            }
+            res.status(200).json( {
+                resposta : "produto excluio",            })
+        }) 
+        .catch(next)
+}  )
 
 
 
