@@ -41,7 +41,27 @@ app.get("/product/:idProd", (req, res, next) =>{
     .catch(next)
 })
 
+app.post( "/product" , (req, res, next) => {
+    conn("produto")
+        .insert(req.body)
+        .then(dados => {
+            if( !dados ){
+                return next(errors(400, "Erro ao inserir"))
+            }
+            res.status(201).json( {
+                resposta : "produto inserido",
+                id: dados[0]
+            })
+        }) 
+        .catch(next)
+}  )
+
+
+
+
+
+
 
 app.listen( PORT , () => {
-    console.log(`servidor executando em: http://localhost:${PORT}`)
+    console.log(`servidor executando em: http://localhost:$`)
 })
