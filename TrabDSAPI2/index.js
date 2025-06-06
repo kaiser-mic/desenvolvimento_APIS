@@ -27,3 +27,14 @@ app.get("/" , (req, res) => {
 app.listen( PORT , () =>{
     console.log( `Loja executando em: http://localhost:${PORT}` )
 } )
+
+
+app.get("/products" , (req, res) => {
+    try {
+        const produtos =  conn( "produtos" ).select( "*" )
+        res.json( produtos )
+    } catch (error) {
+        console.error( error )
+        res.status(500).json( { error: "Erro ao buscar produtos" } )
+    }
+})
