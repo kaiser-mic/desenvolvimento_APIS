@@ -23,3 +23,7 @@ const conn = knex( {
 app.get("/" , (req, res) => {
     res.json( { resposta : "Seja bem-vindo(a) à nossa API"} )
 } )
+
+app.listen( PORT , () =>{
+    console.log( `Loja executando em: http://localhost:${PORT}` )
+} )
