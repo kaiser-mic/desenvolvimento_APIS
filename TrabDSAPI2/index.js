@@ -57,7 +57,7 @@ app.put("/signup" , (req, res) => {
         } )
 })
 
-app.get("/orders/:list" , async (req, res) => {
+app.get("/orders/list" , async (req, res) => {
     try {
         const pedidos = await conn( "pedidos" ).select( "*" )
         res.json( pedidos )
