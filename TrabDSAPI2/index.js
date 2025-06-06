@@ -56,3 +56,13 @@ app.put("/signup" , (req, res) => {
             res.status(500).json( { error: "Erro ao cadastrar usuário" } )
         } )
 })
+
+app.get("/orders/:list" , async (req, res) => {
+    try {
+        const pedidos = await conn( "pedidos" ).select( "*" )
+        res.json( pedidos )
+    } catch (error) {
+        console.error( error )       
+        res.status(500).json( { error: "Erro ao buscar pedidos" } )
+    }
+})
