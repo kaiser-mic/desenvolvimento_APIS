@@ -101,3 +101,19 @@ app.post("/products/update/:id" , async (req, res) => {
         res.status(500).json( { error: "Erro ao atualizar produto" } )
     }
 })
+
+app.delete("/products/:id" , async (req, res) => {
+    const { id } = req.params
+    try {
+        const deletedRows = await conn( "produtos" )
+            .where( { id } )
+            .del()
+        if ( deletedRows == 0 ) {
+            return res.status(404).json( { error: "Produto não encontrado" } )
+        }
+        res.json( { message: "Produto excluído com sucesso" } )
+    } catch (error) {
+        console.error( error )
+        res.status(500).json( { error: "Erro ao excluir produto" } )
+    }
+})
