@@ -29,9 +29,9 @@ app.listen( PORT , () =>{
 } )
 
 
-app.get("/products" , (req, res) => {
+app.get("/products" , async (req, res) => {
     try {
-        const produtos =  conn( "produtos" ).select( "*" )
+        const produtos = await conn( "produtos" ).select( "*" )
         res.json( produtos )
     } catch (error) {
         console.error( error )
@@ -66,3 +66,18 @@ app.get("/orders/list" , async (req, res) => {
         res.status(500).json( { error: "Erro ao buscar pedidos" } )
     }
 })
+
+app.put("/products/create" , async (req, res) => {
+        const { nome, preco, quantidade, categoria_id } = req.body
+        if ( !nome || !preco || !quantidade || !categoria_id ) {
+            return res.status(400).json( { error: "Todos os campos são obrigatórios" } )
+        }
+        try {
+            await conn( "produtos" )
+                .insert( { nome, preco, quantidade, categoria_id } )
+            res.status(201).json( { message: "Produto cadastrado com sucesso" } )
+        } catch (error) {
+            console.error( error )
+            res.status(500).json( { error: "Erro ao cadastrar produto" } )
+        }
+    })
