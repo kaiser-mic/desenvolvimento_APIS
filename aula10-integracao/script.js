@@ -1,6 +1,6 @@
 function add(){
-    var name = document.getElementById("txtNome")
-    var price = document.getElementById("txtPreco")
+    var name = document.getElementById("txtNome").value
+    var price = document.getElementById("txtPreco").value
     if( name.lenght == 0){
         alert("o Campo nome é Obrigatorio")
     }else{
@@ -24,5 +24,33 @@ function add(){
     }
 }
 function buscarProdutos(){
-    
+    var table = document.getElementById("tblProdutos")
+    var ajax = new XMLHttpRequest()
+
+    ajax.onreadystatechange = function(){
+        if( this.readyState == 4 & this.status == 200){
+            const obj = JSON.parse( this.response)
+            obj.forEach(prod => {
+              if(document.getElementById("p" + prod.id) == null){
+                linha = table.insertRow( -1 )
+                linha.id = "p" +prod.id
+
+                cellid = linha.insertCell( 0 )
+                cellNome = linha.insertCell( 1)
+                cellPreco = linha.insertCell( 2)
+                cellExcluir = linha.insertCell(3)
+                
+                cellid.innerHTML = prod.id
+                cellNome.innerHTML = prod.nome
+                cellPreco.innerHTML = "R$" + prod.preco
+                cellExcluir.innerHTML = '<button onclick="excluir('+ prod.id + ')"> X </button> '
+            }  
+            })
+        }
+        
+    }
+
+    ajax.open("GET" , "http://localhost:8001/product", true)
+    ajax.send ()
+
 }
