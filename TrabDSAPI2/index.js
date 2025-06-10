@@ -114,6 +114,11 @@ app.delete("/products/:id" , async (req, res) => {
         res.json( { message: "Produto excluído com sucesso" } )
     } catch (error) {
         console.error( error )
+        if( error.code == 'ER_ROW_IS_REFERENCED_2'){
+            return res.status(409).json({ 
+                message: "Não é possível excluir o produto, pois ele está associado a um ou mais pedidos." 
+            })
+        }
         res.status(500).json( { error: "Erro ao excluir produto" } )
     }
 })
