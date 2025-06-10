@@ -67,7 +67,7 @@ app.get("/orders/list" , async (req, res) => {
     }
 })
 
-app.put("/products/create" , async (req, res) => {
+app.post("/products/create" , async (req, res) => {
         const { nome, preco, quantidade, categoria_id } = req.body
         if ( !nome || !preco || !quantidade || !categoria_id ) {
             return res.status(400).json( { error: "Todos os campos são obrigatórios" } )
@@ -82,7 +82,7 @@ app.put("/products/create" , async (req, res) => {
         }
     })
 
-app.post("/products/update/:id" , async (req, res) => {
+app.put("/products/update/:id" , async (req, res) => {
     const { id } = req.params
     const { nome, preco, quantidade, categoria_id } = req.body
     if ( !nome || !preco || !quantidade || !categoria_id ) {
