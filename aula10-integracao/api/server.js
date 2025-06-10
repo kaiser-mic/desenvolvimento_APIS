@@ -1,6 +1,7 @@
 const express = require("express")
 const knex = require("knex")
 const errors = require("http-errors")
+const cors = require("cors")
 
 
 const app = express()
@@ -8,6 +9,14 @@ const app = express()
 app.use( express.json() )
 app.use( express.urlencoded({extended : true }) )
 
+app.use( cors() )
+
+// app.use (cors( {
+//     origin : "http://localhost" ,
+//     methods : ["GET", "POST" , "PUT", "DELETE"],
+//     allowedHeaders : ["Content-type" , "Authorization"],
+//     credentials : true
+// } ))
 const PORT = 8001
 const conn = knex( {
     client : "mysql" ,
